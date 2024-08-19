@@ -38,7 +38,7 @@ function Navbar() {
         <h2 className="hover:text-[#dddddd] hover:scale-105 transition-all">
           <Link href="/create">Create Event</Link>
         </h2>
-        <Link href="/signup">
+        <Link href="/auth">
           <Button className="bg-red-500 px-2 hover:bg-red-800">
             Login / Sign Up
           </Button>

@@ -32,15 +32,6 @@ export default function Home() {
           </div>
         </BlurFade>
       </div>
-      <GridPattern
-        width={40}
-        height={40}
-        x={-1}
-        y={-1}
-        className={cn(
-          "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] -z-10 opacity-70",
-        )}
-      />
     </>
   );
 }

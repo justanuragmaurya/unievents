@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google"
 import Navbar from "./navbar";
+import GridPattern from "@/components/magicui/grid-pattern";
+import { cn } from "@/lib/utils";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,6 +23,15 @@ export default function RootLayout({
       <body className={popins.className}>
         <Navbar/>
         {children}
+        <GridPattern
+        width={40}
+        height={40}
+        x={-1}
+        y={-1}
+        className={cn(
+          "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] -z-10 opacity-70",
+        )}
+      />
       </body>
     </html>
   );
