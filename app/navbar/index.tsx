@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
     <div className="flex justify-between items-center px-8 py-2 backdrop-blur-sm border-[#2f2f2f] border-b-[0.5px] sticky top-0 z-10">
       <div className="">

@@ -26,7 +26,7 @@ export default function Home() {
               Never miss a beat – find, track, and attend events that shape your
               college experience.
             </h2>
-            <Button className="bg-red-500 rounded-full px-10 mt-5 border-[0.5px] border-[#3a3a3a]">
+            <Button className="bg-red-500 hover:bg-red-600 rounded-full px-10 mt-5 border-[0.5px] border-[#3a3a3a]">
               View Events
             </Button>
           </div>
