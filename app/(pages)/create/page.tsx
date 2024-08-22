@@ -11,27 +11,45 @@ import EventRegistration from "@/types/interface"
 import React, { use, useState } from "react"
 
 export default function Component() {
-  const[ data, setData ] = useState<EventRegistration | null>({
-    "name": "",
-    "type": "",
-    "description": "",
-    "category": "",
-    "tags": [],
-    "startDate": "",
-    "startTime": "",
-    "endDate": "",
-    "endTime": "",
-    "registrationDeadline": "",
-    "venue": "",
-    "virtualLink": "",
-    "maxAttendees": 0,
-    "organizerName": "",
-    "organizerContact": "",
-    "organizerDepartment": ""
-  });
-
-  console.log(data)
-
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [tags, setTags] = useState([]);
+  const [startDate, setStartDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [registrationDeadline, setRegistrationDeadline] = useState("");
+  const [venue, setVenue] = useState("");
+  const [virtualLink, setVirtualLink] = useState("");
+  const [maxAttendees, setMaxAttendees] = useState(0);
+  const [organizerName, setOrganizerName] = useState("");
+  const [organizerContact, setOrganizerContact] = useState("");
+  const [organizerDepartment, setOrganizerDepartment] = useState("");
+  
+  function getFormData(){
+    const data = {
+      name: name,
+      type: type,
+      description: description,
+      category: category,
+      tags: tags,
+      startDate: startDate,
+      startTime: startTime,
+      endDate: endDate,
+      endTime: endTime,
+      registrationDeadline: registrationDeadline,
+      venue: venue,
+      virtualLink: virtualLink,
+      maxAttendees: maxAttendees,
+      organizerName: organizerName,
+      organizerContact: organizerContact,
+      organizerDepartment: organizerDepartment
+  }
+  console.log(data) 
+  }
+  
   return (
     <div className="flex items-center justify-center mt-10">
       <Card className="w-full max-w-4xl">
@@ -44,12 +62,12 @@ export default function Component() {
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="name">Event Name</Label>
-                <Input id="name" placeholder="Enter event name" />
+                <Input id="name" placeholder="Enter event name" value={name?name:""} onChange={(e:any)=>{setName(e.target.value)}}/>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="type">Event Type</Label>
-                <Select >
-                  <SelectTrigger>
+                <Select onValueChange={(value)=>{setType(value)}}>
+                  <SelectTrigger onChange={(e:any)=>{console.log(e.target.select)}}>
                     <SelectValue placeholder="Select event type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -62,12 +80,12 @@ export default function Component() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="description">Event Description</Label>
-              <Textarea id="description" placeholder="Describe your event" />
+              <Textarea id="description" placeholder="Describe your event" value={description?description:""} onChange={(e:any)=>{setDescription(e.target.value)}}/>
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="category">Event Category</Label>
-                <Select >
+                <Select onValueChange={(value)=>{setCategory(value)}} >
                   <SelectTrigger>
                     <SelectValue placeholder="Select event category" />
                   </SelectTrigger>
@@ -82,9 +100,9 @@ export default function Component() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="tags">Event Tags</Label>
-                <Input id="tags" placeholder="Enter event tags (separated by commas)" />
+                <Input id="tags" placeholder="Enter event tags (separated by commas)" value={tags?tags:""} onChange={(e:any)=>{setTags(e.target.value.split(","))}} />
               </div>
-            </div>
+            </div>  
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="date">Event <b>Start</b> Date</Label>
@@ -146,13 +164,13 @@ export default function Component() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="venue">Event Venue</Label>
-                <Input id="venue" placeholder="Enter event venue" />
+                <Input id="venue" placeholder="Enter event venue" value={venue?venue:""} onChange={(e:any)=>{setVenue(e.target.value)}} />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="virtual-link">Virtual Event Link</Label>
-                <Input id="virtual-link" placeholder="Enter virtual event link" />
+                <Input id="virtual-link" placeholder="Enter virtual event link" {...(type === "virtual" ? {} : { disabled: true })} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="max-attendees">Maximum Attendees</Label>
@@ -162,22 +180,22 @@ export default function Component() {
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="organizer-name">Organizer Name</Label>
-                <Input id="organizer-name" placeholder="Enter organizer name" />
+                <Input id="organizer-name" placeholder="Enter organizer name" value={organizerName?organizerName:""} onChange={(e:any)=>{setOrganizerName(e.target.value)}}/>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="organizer-contact">Contact Information</Label>
-                <Input id="organizer-contact" placeholder="Enter contact information" />
+                <Input id="organizer-contact" placeholder="Enter contact information" value={organizerContact?organizerContact:""} onChange={(e:any)=>{setOrganizerContact(e.target.value)}} />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="organizer-department">Organizer Department</Label>
-              <Input id="organizer-department" placeholder="Enter organizer department" />
+              <Input id="organizer-department" placeholder="Enter organizer department" value={organizerDepartment?organizerDepartment:""} onChange={(e:any)=>{setOrganizerDepartment(e.target.value)}} />
             </div>
           </form>
         </CardContent>
         <CardFooter>
           <div className="flex justify-end">
-            <Button>Register Event</Button>
+            <Button onClick={getFormData}>Register Event</Button>
           </div>
         </CardFooter>
       </Card>
